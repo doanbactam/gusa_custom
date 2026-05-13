@@ -15,6 +15,10 @@ include = ["gusa_custom*"]
 [tool.setuptools]
 include-package-data = true
 
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
+erpnext = ">=16.0.0,<17.0.0"
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
