@@ -9,6 +9,7 @@ def after_migrate():
     ensure_modules()
     ensure_custom_fields()
     ensure_reports()
+    ensure_workspace()
     frappe.db.commit()
 
 
@@ -96,3 +97,94 @@ where ifnull(s.custom_cod_required, 0) = 1 and ifnull(s.custom_cod_amount, 0) > 
                 "query": query.strip(),
             }
         ).insert(ignore_permissions=True)
+
+
+def ensure_workspace():
+    links = [
+        {"type": "Card Break", "label": "Thanh toán bán hàng"},
+        {
+            "type": "Link",
+            "label": "Yêu cầu ghi nhận thanh toán",
+            "link_type": "DocType",
+            "link_to": "Sales Payment Claim",
+            "onboard": 1,
+        },
+        {
+            "type": "Link",
+            "label": "Import sao kê ngân hàng",
+            "link_type": "DocType",
+            "link_to": "Bank Statement Import",
+            "onboard": 1,
+        },
+        {
+            "type": "Link",
+            "label": "Giao dịch sao kê",
+            "link_type": "DocType",
+            "link_to": "Bank Statement Transaction",
+        },
+        {"type": "Card Break", "label": "Vận chuyển - đối soát"},
+        {
+            "type": "Link",
+            "label": "Đối soát đơn vị vận chuyển",
+            "link_type": "DocType",
+            "link_to": "Carrier Settlement",
+            "onboard": 1,
+        },
+        {
+            "type": "Link",
+            "label": "Cấu hình vận hành GUSA",
+            "link_type": "DocType",
+            "link_to": "GUSA Operations Settings",
+        },
+        {"type": "Card Break", "label": "Báo cáo nhanh"},
+        {
+            "type": "Link",
+            "label": "Claim đã xác nhận chưa hạch toán",
+            "link_type": "Report",
+            "link_to": "Sales Payment Claims Confirmed Not Booked",
+            "is_query_report": 1,
+        },
+        {
+            "type": "Link",
+            "label": "Tổng hợp claim thanh toán",
+            "link_type": "Report",
+            "link_to": "Sales Payment Claims Summary",
+            "is_query_report": 1,
+        },
+        {
+            "type": "Link",
+            "label": "COD chưa đối soát",
+            "link_type": "Report",
+            "link_to": "COD Pending Cash",
+            "is_query_report": 1,
+        },
+    ]
+
+    doc = (
+        frappe.get_doc("Workspace", "GUSA Operations")
+        if frappe.db.exists("Workspace", "GUSA Operations")
+        else frappe.new_doc("Workspace")
+    )
+    doc.update(
+        {
+            "name": "GUSA Operations",
+            "title": "GUSA Operations",
+            "label": "GUSA Operations",
+            "module": "GUSA Custom",
+            "public": 1,
+            "icon": "organization",
+            "sequence_id": 3,
+            "content": "[]",
+        }
+    )
+    doc.set("links", [])
+    for idx, link in enumerate(links, start=1):
+        link.setdefault("hidden", 0)
+        link.setdefault("onboard", 0)
+        link["idx"] = idx
+        doc.append("links", link)
+
+    if doc.is_new():
+        doc.insert(ignore_permissions=True)
+    else:
+        doc.save(ignore_permissions=True)
