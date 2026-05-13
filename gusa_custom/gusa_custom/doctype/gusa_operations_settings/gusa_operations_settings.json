@@ -1,0 +1,33 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "creation": "2026-05-13 00:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["default_company", "bank_account", "cash_account", "receivable_account", "cod_clearing_account", "shipping_fee_expense_account", "difference_account", "match_tolerance_amount", "match_tolerance_days"],
+  "fields": [
+    {"fieldname": "default_company", "fieldtype": "Link", "label": "Công ty mặc định", "options": "Company"},
+    {"fieldname": "bank_account", "fieldtype": "Link", "label": "Tài khoản ngân hàng mặc định", "options": "Account"},
+    {"fieldname": "cash_account", "fieldtype": "Link", "label": "Tài khoản tiền mặt", "options": "Account"},
+    {"fieldname": "receivable_account", "fieldtype": "Link", "label": "Tài khoản phải thu khách hàng", "options": "Account"},
+    {"fieldname": "cod_clearing_account", "fieldtype": "Link", "label": "Tài khoản COD clearing", "options": "Account"},
+    {"fieldname": "shipping_fee_expense_account", "fieldtype": "Link", "label": "Tài khoản chi phí vận chuyển", "options": "Account"},
+    {"fieldname": "difference_account", "fieldtype": "Link", "label": "Tài khoản chênh lệch/write-off", "options": "Account"},
+    {"default": "0", "fieldname": "match_tolerance_amount", "fieldtype": "Currency", "label": "Sai số tiền cho phép"},
+    {"default": "3", "fieldname": "match_tolerance_days", "fieldtype": "Int", "label": "Sai số ngày cho phép"}
+  ],
+  "issingle": 1,
+  "links": [],
+  "modified": "2026-05-13 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "GUSA Custom",
+  "name": "GUSA Operations Settings",
+  "owner": "Administrator",
+  "permissions": [
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+    {"email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Accounts Manager", "share": 1, "write": 1}
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

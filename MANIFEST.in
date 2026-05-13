@@ -1,0 +1,5 @@
+recursive-include gusa_custom *.json
+recursive-include gusa_custom *.js
+recursive-include gusa_custom *.py
+recursive-include gusa_custom *.txt
+include README.md

@@ -1,0 +1,26 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "creation": "2026-05-13 00:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": ["sales_payment_claim", "sales_order", "customer", "allocated_amount", "note"],
+  "fields": [
+    {"fieldname": "sales_payment_claim", "fieldtype": "Link", "in_list_view": 1, "label": "Sales Payment Claim", "options": "Sales Payment Claim"},
+    {"fieldname": "sales_order", "fieldtype": "Link", "in_list_view": 1, "label": "Đơn bán hàng", "options": "Sales Order"},
+    {"fieldname": "customer", "fieldtype": "Link", "in_list_view": 1, "label": "Khách hàng", "options": "Customer"},
+    {"fieldname": "allocated_amount", "fieldtype": "Currency", "in_list_view": 1, "label": "Số tiền phân bổ"},
+    {"fieldname": "note", "fieldtype": "Small Text", "label": "Ghi chú"}
+  ],
+  "istable": 1,
+  "modified": "2026-05-13 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "GUSA Custom",
+  "name": "Bank Match Allocation",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}
