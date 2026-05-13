@@ -4,6 +4,8 @@ app_publisher = "GUSA Vietnam"
 app_description = "Vietnam operations customizations for ERPNext"
 app_email = "admin@gusavietnam.vn"
 app_license = "MIT"
+frappe_version = ">=16.0.0 <17.0.0"
+erpnext_version = ">=16.0.0 <17.0.0"
 
 after_install = "gusa_custom.install.after_install"
 after_migrate = "gusa_custom.install.after_migrate"
