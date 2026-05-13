@@ -11,6 +11,8 @@ dependencies = []
 
 [tool.setuptools.packages.find]
 include = ["gusa_custom*"]
+
+[tool.setuptools]
 include-package-data = true
 
 [build-system]
